@@ -1,0 +1,17 @@
+# DeepTrace AI - Complete Requirements (Python 3.11 / Windows 11 Compatible)
+numpy>=1.26
+opencv-python>=4.9
+torch>=2.2.0
+torchvision>=0.17.0
+soundfile>=0.12.1
+imageio-ffmpeg>=0.4.9
+pydantic>=2.5
+fastapi>=0.110.0
+uvicorn>=0.28.0
+streamlit>=1.32.0
+matplotlib>=3.8.0
+scikit-learn>=1.4.0
+scipy>=1.12.0
+httpx>=0.27.0
+python-multipart>=0.0.9
+pytest>=7.4

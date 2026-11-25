@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  deeptrace-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deeptrace_engine
+    ports:
+      - "8000:8000"  # FastAPI Backend
+      - "8501:8501"  # Streamlit Dashboard
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models:/app/models
+    environment:
+      - DEEPTRACE_LOG_LEVEL=INFO
+    restart: unless-stopped
