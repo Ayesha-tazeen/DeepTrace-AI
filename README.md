@@ -47,6 +47,8 @@ Every uploaded media asset progresses through a strict, transparent 8-stage pipe
 7. **EVIDENCE AGGREGATION:** Multi-indicator synthesis combining measured artifact flags and neural predictions into an explainable audit trail.
 8. **FINAL REPORT:** JSON forensic report generated with unique UUID, persisted to SQLite (`deeptrace.db`), and made available for instant download.
 
+The Streamlit dashboard adds an **Image Deepfake Generation Pipeline Explorer** (last tab). It walks a still image through input, preprocessing, model families, synthesis, post-processing, and provenance. Real steps are OpenCV processing plus a tiny PyTorch autoencoder trained on that one image. GAN upsampling and diffusion noising are labeled demonstrations: this project does not ship a pretrained generator, and it does not generate video or audio. The last stage can send the resulting JPEG through the existing detection pipeline.
+
 ---
 
 ## 💻 Windows 11 & Python 3.11 Setup

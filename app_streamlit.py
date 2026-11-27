@@ -5,9 +5,6 @@ Professional dark cybersecurity interface for Image, Video and Audio forensics.
 
 from __future__ import annotations
 
-import io
-import json
-import os
 import sys
 import tempfile
 from pathlib import Path
@@ -27,6 +24,7 @@ from deeptrace.config import get_settings
 from deeptrace.database.db import get_report, init_db, list_reports
 from deeptrace.pipeline import ForensicPipeline
 from deeptrace.schemas import AnalysisReport, FinalVerdict, MediaType
+from deeptrace.ui.generation_explorer import render_generation_explorer
 
 # Page configuration
 st.set_page_config(
@@ -278,6 +276,40 @@ st.markdown(
         border-radius: 6px !important;
         font-weight: 500 !important;
     }
+
+    .kind-real, .kind-demo, .kind-explain {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin-bottom: 8px;
+    }
+    .kind-real {
+        background: rgba(16, 185, 129, 0.18);
+        color: #34d399 !important;
+        border: 1px solid #059669;
+    }
+    .kind-demo {
+        background: rgba(245, 158, 11, 0.18);
+        color: #fbbf24 !important;
+        border: 1px solid #d97706;
+    }
+    .kind-explain {
+        background: rgba(56, 189, 248, 0.15);
+        color: #7dd3fc !important;
+        border: 1px solid #0284c7;
+    }
+    .cyber-card h4 {
+        margin: 8px 0 6px 0;
+        color: #e2e8f0 !important;
+    }
+    .cyber-card p {
+        color: #cbd5e1 !important;
+        font-size: 0.92rem;
+        line-height: 1.45;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -459,9 +491,9 @@ with st.sidebar:
 
     st.markdown("---")
     st.caption(
-        "DeepTrace AI inspects image, video, and audio assets through real pretrained "
-        "neural feature representations, Fourier 2D frequency analysis, Error Level Analysis (ELA), "
-        "and acoustic vocoder spectral profiling."
+        "Detection covers image, video, and audio. The last tab is an image-only generation "
+        "explorer: real preprocessing and a toy autoencoder, with GAN and diffusion steps marked "
+        "as demonstrations. No video or audio is generated."
     )
 
 
@@ -471,6 +503,7 @@ tabs = st.tabs([
     "🎥 Video Forensics",
     "🎙️ Audio Forensics",
     "📜 Forensic History & Audit Log",
+    "🧬 Generation Explorer",
 ])
 
 
@@ -640,3 +673,10 @@ with tabs[3]:
             historical_report = get_report(selected_id, settings.db_path)
             if historical_report:
                 render_report_details(historical_report, key_prefix="history")
+
+
+# -----------------------------------------------------------------------------
+# TAB 5: Image generation pipeline explorer
+# -----------------------------------------------------------------------------
+with tabs[4]:
+    render_generation_explorer(pipeline, render_report_details)
