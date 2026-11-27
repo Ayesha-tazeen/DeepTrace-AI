@@ -5,7 +5,7 @@ A multimodal deepfake forensic investigation and synthetic media detection syste
 DeepTrace AI analyzes Images, Videos, and Audio files through a deterministic 8-stage forensic pipeline, combining genuine neural network feature extraction with measurable physical and frequency-domain artifact analysis.
 
 ---
-
+Hosted on streamlit cloud : [https://deeptrace-ai-ayesha123.streamlit.app](https://deeptrace-ai-ayesha123.streamlit.app)
 ## 📌 Table of Contents
 1. [Pipeline Architecture](#-pipeline-architecture)
 2. [Supported Modalities & Capabilities](#-supported-modalities--capabilities)
